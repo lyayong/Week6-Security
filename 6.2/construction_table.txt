@@ -1,0 +1,26 @@
+DROP TABLE IF EXISTS smart_sensor_telemetry;
+DROP TABLE IF EXISTS environmental_risk_logs;
+DROP TABLE IF EXISTS project_sites;
+
+CREATE TABLE project_sites (
+    site_id SERIAL PRIMARY KEY,
+    project_name VARCHAR(255) NOT NULL,
+    budget NUMERIC(15, 2) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    location_coordinates VARCHAR(100) 
+);
+
+CREATE TABLE environmental_risk_logs (
+    log_id SERIAL PRIMARY KEY,
+    site_id INT REFERENCES project_sites(site_id) ON DELETE CASCADE,
+    assessment_date DATE NOT NULL,
+    risk_type VARCHAR(100) NOT NULL,
+    risk_score INT CHECK (risk_score >= 1 AND risk_score <= 100)
+);
+
+CREATE TABLE smart_sensor_telemetry (
+    reading_id SERIAL PRIMARY KEY,
+    site_id INT REFERENCES project_sites(site_id) ON DELETE CASCADE,
+    reading_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    sensor_payload JSONB NOT NULL
+);

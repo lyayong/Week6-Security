@@ -1,0 +1,30 @@
+INSERT INTO project_sites (project_name, budget, status, location_coordinates) VALUES
+('Kuching Autonomous Transit Line', 15000000.00, 'Active', '1.5535, 110.3593'),
+('Bintulu Port Expansion', 85000000.00, 'Planning', '3.2574, 113.0805'),
+('Samarahan Coastal Defense Wall', 3200000.00, 'Active', '1.4589, 110.4632'),
+('Miri Offshore Support Facility', 12000000.00, 'Completed', '4.4148, 113.9874'),
+('Damai Eco-Resort Development', 4500000.00, 'Active', '1.7501, 110.3168');
+
+INSERT INTO environmental_risk_logs (site_id, assessment_date, risk_type, risk_score) VALUES
+(3, '2026-06-01', 'Coastal Flooding', 88),
+(3, '2026-06-05', 'Soil Erosion', 75),
+(2, '2026-06-02', 'High Wind Waves', 62),
+(1, '2026-06-10', 'Urban Flash Flood', 45),
+(4, '2026-05-15', 'Monsoon Swell', 30),
+(5, '2026-06-12', 'Landslide', 55),
+(3, '2026-06-14', 'Coastal Flooding', 92),
+(2, '2026-06-14', 'Equipment Corrosion', 40);
+
+INSERT INTO smart_sensor_telemetry (site_id, reading_timestamp, sensor_payload) VALUES
+(3, '2026-06-15 08:00:00', '{"sensor_type": "tide_gauge", "water_level_m": 2.8, "alert_status": "warning", "ocean_safe_index": 0.82}'),
+(3, '2026-06-15 08:15:00', '{"sensor_type": "tide_gauge", "water_level_m": 3.1, "alert_status": "critical", "ocean_safe_index": 0.95}'),
+(3, '2026-06-15 08:30:00', '{"sensor_type": "wave_radar", "wave_height_m": 1.5, "wind_speed_kmh": 45}'),
+(1, '2026-06-15 09:00:00', '{"sensor_type": "vibration_node", "max_amplitude_mm": 0.4, "status": "nominal"}'),
+(1, '2026-06-15 09:10:00', '{"sensor_type": "vibration_node", "max_amplitude_mm": 0.5, "status": "nominal"}'),
+(1, '2026-06-15 09:20:00', '{"sensor_type": "concrete_temp", "temperature_c": 32.5, "humidity_percent": 80}'),
+(2, '2026-06-15 07:45:00', '{"sensor_type": "crane_telemetry", "equipment_id": "CR-01", "load_weight_tons": 25.5, "wind_warning": false}'),
+(2, '2026-06-15 08:45:00', '{"sensor_type": "crane_telemetry", "equipment_id": "CR-01", "load_weight_tons": 30.2, "wind_warning": true}'),
+(2, '2026-06-15 09:15:00', '{"sensor_type": "anemometer", "wind_speed_kmh": 65.4, "gust_speed_kmh": 72.1}'),
+(5, '2026-06-15 06:00:00', '{"sensor_type": "soil_moisture", "saturation_percent": 68, "landslide_risk_flag": false}'),
+(5, '2026-06-15 08:00:00', '{"sensor_type": "soil_moisture", "saturation_percent": 85, "landslide_risk_flag": true}'),
+(4, '2026-06-15 09:00:00', '{"sensor_type": "air_quality", "pm25_level": 15, "voc_ppm": 0.02}');
