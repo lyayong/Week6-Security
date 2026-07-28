@@ -1,0 +1,41 @@
+name: Backend Security Cloud Test
+
+# trigger every push
+on: [push]
+
+jobs:
+  run-security-check:
+    runs-on: windows-latest #you can use ubuntu or macos
+
+    steps:
+    #1: Close the repo code onto the runner
+    - name: Checkout Repository Code
+      uses: actions/checkout@v4
+
+    #2: Set up the python runtime environment
+    - name: Set up Python Environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    #3: Pull the real secret
+    - name: Simulate Secure Database Connection (Bash)
+      env:
+        DB_PASS: ${{ secrets.DB_PASS }}
+      shell: bash
+      run: |
+        echo "Cloud active"
+        echo "Checking database"
+        echo "Variables: $DB_PASS"
+
+    #4: Pass the real secret to python
+    - name: Verify Secret inside Python Runtime
+      env:
+        DB_PASS: ${{ secrets.DB_PASS }}
+      shell: bash
+      run: |
+        python -c "
+        import os
+        print('Python env check:', os.getenv('DB_PASS'))
+        print('End of python')
+        "
